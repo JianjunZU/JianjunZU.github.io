@@ -1,0 +1,383 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Office 365部分安装及同时安装Visio的方法 - Kebab de JZ
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="Kebab de JZ" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:jianjunzu.github.io ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; Kebab de JZ</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="self" href="index.html">Home</a></li>
+        
+        <li><a target="_self" href="archives.html">Archives</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Office 365部分安装及同时安装Visio的方法</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/2/1</span>
+
+          
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <blockquote>
+<p>From MWeb</p>
+</blockquote>
+
+<p>Win版本的Office 365安装包默认安装所有组件，没有选择的页面，在安装Office 365后再安装下载的Visio 2016专业版时，会显示计算机上已经安装了<em>即插即用</em>Office，Visio不可安装，因此可以考虑使用<a href="https://docs.microsoft.com/zh-cn/deployoffice/overview-of-the-office-2016-deployment-tool">Office部署工具</a>来解决这两个问题。</p>
+
+<ul>
+<li>
+<a href="#toc_0">下载安装Office365和Visio</a>
+<ul>
+<li>
+<a href="#toc_1">下载Office部署工具</a>
+</li>
+<li>
+<a href="#toc_2">修改配置</a>
+</li>
+<li>
+<a href="#toc_3">部署工具使用方法</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_4">激活</a>
+</li>
+</ul>
+
+
+<h2 id="toc_0">下载安装Office365和Visio</h2>
+
+<h3 id="toc_1">下载Office部署工具</h3>
+
+<p>从<a href="https://www.microsoft.com/en-us/download/details.aspx?id=49117">微软下载中心</a>下载Office部署工具，运行后得到一个<code>setup.exe</code>和三个<code>XML</code>文件，选择对应的版本进行修改。</p>
+
+<h3 id="toc_2">修改配置</h3>
+
+<p>例如打开64位的<code>XML</code>文件后是如下内容</p>
+
+<pre><code class="language-markup">&lt;Configuration&gt;
+
+  &lt;Add OfficeClientEdition=&quot;64&quot; Channel=&quot;Monthly&quot;&gt;
+    &lt;Product ID=&quot;O365ProPlusRetail&quot;&gt;
+      &lt;Language ID=&quot;en-us&quot; /&gt;
+    &lt;/Product&gt;
+    &lt;Product ID=&quot;VisioProRetail&quot;&gt;
+      &lt;Language ID=&quot;en-us&quot; /&gt;
+    &lt;/Product&gt;
+  &lt;/Add&gt;
+    
+&lt;/Configuration&gt;
+</code></pre>
+
+<p>该文件默认包含了英文版本的Office365 professional plus零售版和Visio 专业零售版，具体解释参照<a href="https://docs.microsoft.com/zh-cn/deployoffice/configuration-options-for-the-office-2016-deployment-tool">官网文档</a>，此处我们只需要将语言版本改成中文然后去除部分组件即可。</p>
+
+<p>去除组件是在<code>&lt;Product&gt;</code>元素内部增加<code>&lt;ExcludeApp&gt;</code>元素，使用<code>ID</code>属性来定义需要去除的产品，包括</p>
+
+<pre><code class="language-markup">ID=&quot;Access&quot;
+ID=&quot;Excel&quot;
+ID=&quot;Groove&quot;
+ID=&quot;Lync&quot;
+ID=&quot;OneDrive&quot;
+ID=&quot;OneNote&quot;
+ID=&quot;Outlook&quot;
+ID=&quot;PowerPoint&quot;
+ID=&quot;Publisher&quot;
+ID=&quot;Word&quot;
+</code></pre>
+
+<p>使用 <strong>Groove</strong>表示OneDrive for Business，使用 <strong>Lync</strong>表示Skype for Business。</p>
+
+<p>修改后的配置文件内容例如</p>
+
+<pre><code class="language-markup">&lt;Configuration&gt;
+
+  &lt;Add OfficeClientEdition=&quot;64&quot; Channel=&quot;Monthly&quot;&gt;
+    &lt;Product ID=&quot;O365ProPlusRetail&quot;&gt;
+      &lt;Language ID=&quot;zh-cn&quot; /&gt;
+      &lt;ExcludeApp ID=&quot;Access&quot; /&gt;
+      &lt;ExcludeApp ID=&quot;Groove&quot; /&gt;
+      &lt;ExcludeApp ID=&quot;Lync&quot; /&gt;
+      &lt;ExcludeApp ID=&quot;Publisher&quot; /&gt;
+      &lt;ExcludeApp ID=&quot;OneNote&quot; /&gt;
+      &lt;ExcludeApp ID=&quot;Outlook&quot; /&gt;     
+    &lt;/Product&gt;
+    &lt;Product ID=&quot;VisioProRetail&quot;&gt;
+      &lt;Language ID=&quot;zh-cn&quot; /&gt;
+    &lt;/Product&gt;
+  &lt;/Add&gt;
+    
+&lt;/Configuration&gt;
+</code></pre>
+
+<p>此时只保留了Word，Excel，Powerpoint和Onedrive，同时安装了Visio专业零售版。</p>
+
+<h3 id="toc_3">部署工具使用方法</h3>
+
+<p>之前得到的<code>setup.exe</code>需要在<strong>命令行</strong>运行使用（在<code>setup.exe</code>所在文件夹按住<code>shift</code>的同时右击空白区域，点击<code>在此处打开命令窗口</code>），不同的参数将在不同模式下运行，这里只介绍会使用到的两种模式</p>
+
+<ul>
+<li>下载模式。使用<code>setup.exe /download config.xml</code>下载所需的安装文件，这里<code>config.xml</code>为之前修改的配置文件。</li>
+<li>配置模式。使用<code>setup.exe /configure config.xml</code>安装或删除所选定的组件、语言包。</li>
+</ul>
+
+<p>这样，就只安装了所需的Office组件了。</p>
+
+<h2 id="toc_4">激活</h2>
+
+<p>Office365使用的一般都是正版，直接按指示登陆账户即可，Visio可以从<a href="http://www.xitongcheng.com/jiaocheng/dnrj_article_45661.html">这里</a>选择一个密钥进行激活，但是激活得到的是试用版，可以使用<a href="https://blog.csdn.net/A_Z666666/article/details/81165705">此文</a>给出的激活工具进行激活。</p>
+
+<hr/>
+
+<p>By JZ<br/>
+<em>Less is more</em></p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="member-access.html" 
+          title="Previous Post: member access within misaligned address 错误">&laquo; member access within misaligned address 错误</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15490007488724.html" 
+          title="Next Post: Mac使用bootcamp安装win系统花屏解决方法">Mac使用bootcamp安装win系统花屏解决方法 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="https://imgur.com/lO2kgp6" /></div>
+            
+                <h1>Kebab de JZ</h1>
+                <div class="site-des">JZ个人博客</div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/JianjunZU/" title="GitHub">GitHub</a>
+<a target="_blank" class="email" href="mailto:jianjunzu@outlook.com" title="Email">Email</a>
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="member-access.html">member access within misaligned address 错误</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15490329122882.html">Office 365部分安装及同时安装Visio的方法</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15490007488724.html">Mac使用bootcamp安装win系统花屏解决方法</a>
+			      </li>
+		     
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>

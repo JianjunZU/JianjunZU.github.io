@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Kebab de JZ]]></title>
+  <link href="https://jianjunzu.github.io/atom.xml" rel="self"/>
+  <link href="https://jianjunzu.github.io/"/>
+  <updated>2019-05-15T16:17:36+08:00</updated>
+  <id>https://jianjunzu.github.io/</id>
+  <author>
+    <name><![CDATA[]]></name>
+    
+  </author>
+  <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[member access within misaligned address 错误]]></title>
+    <link href="https://jianjunzu.github.io/member-access.html"/>
+    <updated>2019-02-03T21:25:25+08:00</updated>
+    <id>https://jianjunzu.github.io/member-access.html</id>
+    <content type="html"><![CDATA[
+<p>在做leetcode <a href="https://leetcode.com/problems/add-two-numbers/">第2题</a>时使用C语言编写链表时报错</p>
+
+<span id="more"></span><!-- more -->
+
+<ul>
+<li>
+<a href="#toc_0">错误复现</a>
+</li>
+<li>
+<a href="#toc_1">错误原因</a>
+</li>
+<li>
+<a href="#toc_2">解决办法</a>
+</li>
+</ul>
+
+
+<h2 id="toc_0">错误复现</h2>
+
+<p>报错时的代码如下</p>
+
+<pre><code class="language-c">/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
+   
+    if(l1==NULL) return l2;
+    if(l2==NULL) return l1;
+     
+    struct ListNode* result=(struct ListNode*)malloc(sizeof(struct ListNode));
+    int tmp=l1-&gt;val+l2-&gt;val;
+    if(tmp&lt;10){
+        result-&gt;val = tmp;
+        result-&gt;next = addTwoNumbers(l1-&gt;next,l2-&gt;next);
+    }else{
+        result-&gt;val = tmp%10;
+        struct ListNode* tmpN=(struct ListNode*)malloc(sizeof(struct ListNode));
+        tmpN-&gt;val=tmp/10;
+        result-&gt;next = addTwoNumbers(addTwoNumbers(l1-&gt;next,l2-&gt;next),tmpN); 
+    }
+    return result;
+}
+</code></pre>
+
+<p>运行后报错</p>
+
+<pre><code class="language-c">member access within misaligned address 0x000000000e91 for type &#39;struct ListNode&#39;, which requires 8 byte alignment (ListNode.c)
+0x000000000e91: note: pointer points here
+</code></pre>
+
+<h2 id="toc_1">错误原因</h2>
+
+<p>在程序倒数第6行处申请了一个<code>tmpN</code>指向的结构体<code>ListNode</code>空间，而该结构体中包含<code>next</code>指针，若该节点作为整个链表的最后一个节点，如<code>l1</code>和<code>l2</code>分别指向<code>[5]</code>和<code>[6]</code>时，此时<code>tmpN</code>指向的空间并没有初始化<code>next</code>指针，因此报错。</p>
+
+<h2 id="toc_2">解决办法</h2>
+
+<p>使用<code>NULL</code>初始化<code>next</code>指针指向的内容，如</p>
+
+<pre><code class="language-c">/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
+   
+    if(l1==NULL) return l2;
+    if(l2==NULL) return l1; 
+    struct ListNode* result=(struct ListNode*)malloc(sizeof(struct ListNode));
+    int tmp=l1-&gt;val+l2-&gt;val;
+    if(tmp&lt;10){
+        result-&gt;val = tmp;
+        result-&gt;next = addTwoNumbers(l1-&gt;next,l2-&gt;next);
+    }else{
+        result-&gt;val = tmp%10;
+        struct ListNode* tmpN=(struct ListNode*)malloc(sizeof(struct ListNode));
+        tmpN-&gt;next=NULL;
+        tmpN-&gt;val=tmp/10;
+        result-&gt;next = addTwoNumbers(addTwoNumbers(l1-&gt;next,l2-&gt;next),tmpN);   
+    }
+    return result;
+}
+</code></pre>
+
+<hr/>
+
+<p>By JZ<br/>
+<em>Less is more</em></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Office 365部分安装及同时安装Visio的方法]]></title>
+    <link href="https://jianjunzu.github.io/office-365-visio.html"/>
+    <updated>2019-02-01T22:55:12+08:00</updated>
+    <id>https://jianjunzu.github.io/office-365-visio.html</id>
+    <content type="html"><![CDATA[
+<blockquote>
+<p>From MWeb</p>
+</blockquote>
+
+<p>Win版本的Office 365安装包默认安装所有组件，没有选择的页面，在安装Office 365后再安装下载的Visio 2016专业版时，会显示计算机上已经安装了<em>即插即用</em>Office，Visio不可安装，因此可以考虑使用<a href="https://docs.microsoft.com/zh-cn/deployoffice/overview-of-the-office-2016-deployment-tool">Office部署工具</a>来解决这两个问题。</p>
+
+<span id="more"></span><!-- more -->
+
+<ul>
+<li>
+<a href="#toc_0">下载安装Office365和Visio</a>
+<ul>
+<li>
+<a href="#toc_1">下载Office部署工具</a>
+</li>
+<li>
+<a href="#toc_2">修改配置</a>
+</li>
+<li>
+<a href="#toc_3">部署工具使用方法</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_4">激活</a>
+</li>
+</ul>
+
+
+<h2 id="toc_0">下载安装Office365和Visio</h2>
+
+<h3 id="toc_1">下载Office部署工具</h3>
+
+<p>从<a href="https://www.microsoft.com/en-us/download/details.aspx?id=49117">微软下载中心</a>下载Office部署工具，运行后得到一个<code>setup.exe</code>和三个<code>XML</code>文件，选择对应的版本进行修改。</p>
+
+<h3 id="toc_2">修改配置</h3>
+
+<p>例如打开64位的<code>XML</code>文件后是如下内容</p>
+
+<pre><code class="language-markup">&lt;Configuration&gt;
+
+  &lt;Add OfficeClientEdition=&quot;64&quot; Channel=&quot;Monthly&quot;&gt;
+    &lt;Product ID=&quot;O365ProPlusRetail&quot;&gt;
+      &lt;Language ID=&quot;en-us&quot; /&gt;
+    &lt;/Product&gt;
+    &lt;Product ID=&quot;VisioProRetail&quot;&gt;
+      &lt;Language ID=&quot;en-us&quot; /&gt;
+    &lt;/Product&gt;
+  &lt;/Add&gt;
+    
+&lt;/Configuration&gt;
+</code></pre>
+
+<p>该文件默认包含了英文版本的Office365 professional plus零售版和Visio 专业零售版，具体解释参照<a href="https://docs.microsoft.com/zh-cn/deployoffice/configuration-options-for-the-office-2016-deployment-tool">官网文档</a>，此处我们只需要将语言版本改成中文然后去除部分组件即可。</p>
+
+<p>去除组件是在<code>&lt;Product&gt;</code>元素内部增加<code>&lt;ExcludeApp&gt;</code>元素，使用<code>ID</code>属性来定义需要去除的产品，包括</p>
+
+<pre><code class="language-markup">ID=&quot;Access&quot;
+ID=&quot;Excel&quot;
+ID=&quot;Groove&quot;
+ID=&quot;Lync&quot;
+ID=&quot;OneDrive&quot;
+ID=&quot;OneNote&quot;
+ID=&quot;Outlook&quot;
+ID=&quot;PowerPoint&quot;
+ID=&quot;Publisher&quot;
+ID=&quot;Word&quot;
+</code></pre>
+
+<p>使用 <strong>Groove</strong>表示OneDrive for Business，使用 <strong>Lync</strong>表示Skype for Business。</p>
+
+<p>修改后的配置文件内容例如</p>
+
+<pre><code class="language-markup">&lt;Configuration&gt;
+
+  &lt;Add OfficeClientEdition=&quot;64&quot; Channel=&quot;Monthly&quot;&gt;
+    &lt;Product ID=&quot;O365ProPlusRetail&quot;&gt;
+      &lt;Language ID=&quot;zh-cn&quot; /&gt;
+      &lt;ExcludeApp ID=&quot;Access&quot; /&gt;
+      &lt;ExcludeApp ID=&quot;Groove&quot; /&gt;
+      &lt;ExcludeApp ID=&quot;Lync&quot; /&gt;
+      &lt;ExcludeApp ID=&quot;Publisher&quot; /&gt;
+      &lt;ExcludeApp ID=&quot;OneNote&quot; /&gt;
+      &lt;ExcludeApp ID=&quot;Outlook&quot; /&gt;     
+    &lt;/Product&gt;
+    &lt;Product ID=&quot;VisioProRetail&quot;&gt;
+      &lt;Language ID=&quot;zh-cn&quot; /&gt;
+    &lt;/Product&gt;
+  &lt;/Add&gt;
+    
+&lt;/Configuration&gt;
+</code></pre>
+
+<p>此时只保留了Word，Excel，Powerpoint和Onedrive，同时安装了Visio专业零售版。</p>
+
+<h3 id="toc_3">部署工具使用方法</h3>
+
+<p>之前得到的<code>setup.exe</code>需要在<strong>命令行</strong>运行使用（在<code>setup.exe</code>所在文件夹按住<code>shift</code>的同时右击空白区域，点击<code>在此处打开命令窗口</code>），不同的参数将在不同模式下运行，这里只介绍会使用到的两种模式</p>
+
+<ul>
+<li>下载模式。使用<code>setup.exe /download config.xml</code>下载所需的安装文件，这里<code>config.xml</code>为之前修改的配置文件。</li>
+<li>配置模式。使用<code>setup.exe /configure config.xml</code>安装或删除所选定的组件、语言包。</li>
+</ul>
+
+<p>这样，就只安装了所需的Office组件了。</p>
+
+<h2 id="toc_4">激活</h2>
+
+<p>Office365使用的一般都是正版，直接按指示登陆账户即可，Visio可以从<a href="http://www.xitongcheng.com/jiaocheng/dnrj_article_45661.html">这里</a>选择一个密钥进行激活，但是激活得到的是试用版，可以使用<a href="https://blog.csdn.net/A_Z666666/article/details/81165705">此文</a>给出的激活工具进行激活。</p>
+
+<hr/>
+
+<p>By JZ<br/>
+<em>Less is more</em></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mac使用bootcamp安装win系统花屏解决方法]]></title>
+    <link href="https://jianjunzu.github.io/mac-bootcamp-win.html"/>
+    <updated>2019-02-01T13:59:08+08:00</updated>
+    <id>https://jianjunzu.github.io/mac-bootcamp-win.html</id>
+    <content type="html"><![CDATA[
+<p>15年11’乞丐版air装win屏幕花屏，很郁闷，先后找了网上很多方法，最终总结出了一个比较折中的方法，不玩游戏不使用大型3D的可以参考。</p>
+
+<span id="more"></span><!-- more -->
+
+<ul>
+<li>
+<a href="#toc_0">1 花屏现象</a>
+</li>
+<li>
+<a href="#toc_1">2 解决方法</a>
+<ul>
+<li>
+<a href="#toc_2">2.1 禁用驱动</a>
+</li>
+<li>
+<a href="#toc_3">2.2 使用Microsoft基本显示适配器</a>
+<ul>
+<li>
+<a href="#toc_4">2.2.1 禁用自动安装驱动</a>
+</li>
+<li>
+<a href="#toc_5">2.2.2 禁用windows更新</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_6">3 总结</a>
+</li>
+</ul>
+
+
+<h2 id="toc_0">1 花屏现象</h2>
+
+<p>刚装完系统时不会产生花屏，但安装完bootcamp驱动后屏幕开始时不时出现如下图般的花屏。其实是在安装了显卡驱动后造成的，因此如果不玩游戏或者对于显卡要求不高的可以使用本文的方法。</p>
+
+<p><img src="https://i.imgur.com/oLrX3h7.jpg" alt=""/></p>
+
+<h2 id="toc_1">2 解决方法</h2>
+
+<p>可以考虑禁用显卡驱动，或者使用Microsoft基本显示适配器</p>
+
+<h3 id="toc_2">2.1 禁用驱动</h3>
+
+<p>如下图，进入设备管理器，找到显卡驱动，右击<code>禁用</code>即可</p>
+
+<p><img src="https://i.imgur.com/pZunUqZ.png" alt=""/></p>
+
+<h3 id="toc_3">2.2 使用Microsoft基本显示适配器</h3>
+
+<p>或者选择使用Microsoft基本显示适配器，同样在在上图位置，右击显卡驱</p>
+
+<p>动后点击<code>更新驱动程序软件</code>，选择<code>浏览计算机以查找驱动程序软件</code></p>
+
+<p><img src="https://i.imgur.com/cpbVRBR.jpg" alt=""/></p>
+
+<p>选择<code>从计算机的设备驱动程序列表选取</code></p>
+
+<p><img src="https://i.imgur.com/YIkcFUs.jpg" alt=""/></p>
+
+<p>选择<code>基本显示适配器</code></p>
+
+<p><img src="https://i.imgur.com/e4FLDDp.jpg" alt=""/></p>
+
+<p>至此，屏幕就不会闪了</p>
+
+<h4 id="toc_4">2.2.1 禁用自动安装驱动</h4>
+
+<p><em><u>但是在win8及以后的系统，过一段时间后依旧可能重新开始花屏，</u></em>其原因在于win系统的自动安装驱动，因此需要关闭这一功能，网上相关方法很多，win8的可以参考<a href="https://g.pconline.com.cn/x/305/3056721.html">这里</a>，win10也类似，可自行搜索方法。</p>
+
+<h4 id="toc_5">2.2.2 禁用windows更新</h4>
+
+<p>一段时间后发现，即便如此还是会在一段时候后变成使用intel的显卡驱动。找了一圈后在系统更新记录里发现了原因，系统自动升级同时升级了显卡驱动，因此可以选择<strong><em>禁用windows更新</em></strong>或者改成<strong><em>由用户选择安装</em></strong>以避免升级显卡。</p>
+
+<h2 id="toc_6">3 总结</h2>
+
+<p>该方法只是针对于对显卡要求不高的情况，譬如我只是用来使用Office和Visio，同配置下Mac端的显然lag很多。</p>
+
+<hr/>
+
+<p>By JZ<br/>
+<em>Less is more</em></p>
+
+]]></content>
+  </entry>
+  
+</feed>

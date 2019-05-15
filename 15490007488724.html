@@ -1,0 +1,349 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Mac使用bootcamp安装win系统花屏解决方法 - Kebab de JZ
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="Kebab de JZ" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:jianjunzu.github.io ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; Kebab de JZ</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="self" href="index.html">Home</a></li>
+        
+        <li><a target="_self" href="archives.html">Archives</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Mac使用bootcamp安装win系统花屏解决方法</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/2/1</span>
+
+          
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>15年11’乞丐版air装win屏幕花屏，很郁闷，先后找了网上很多方法，最终总结出了一个比较折中的方法，不玩游戏不使用大型3D的可以参考。</p>
+
+<ul>
+<li>
+<a href="#toc_0">1 花屏现象</a>
+</li>
+<li>
+<a href="#toc_1">2 解决方法</a>
+<ul>
+<li>
+<a href="#toc_2">2.1 禁用驱动</a>
+</li>
+<li>
+<a href="#toc_3">2.2 使用Microsoft基本显示适配器</a>
+<ul>
+<li>
+<a href="#toc_4">2.2.1 禁用自动安装驱动</a>
+</li>
+<li>
+<a href="#toc_5">2.2.2 禁用windows更新</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_6">3 总结</a>
+</li>
+</ul>
+
+
+<h2 id="toc_0">1 花屏现象</h2>
+
+<p>刚装完系统时不会产生花屏，但安装完bootcamp驱动后屏幕开始时不时出现如下图般的花屏。其实是在安装了显卡驱动后造成的，因此如果不玩游戏或者对于显卡要求不高的可以使用本文的方法。</p>
+
+<p><img src="https://i.imgur.com/oLrX3h7.jpg" alt=""/></p>
+
+<h2 id="toc_1">2 解决方法</h2>
+
+<p>可以考虑禁用显卡驱动，或者使用Microsoft基本显示适配器</p>
+
+<h3 id="toc_2">2.1 禁用驱动</h3>
+
+<p>如下图，进入设备管理器，找到显卡驱动，右击<code>禁用</code>即可</p>
+
+<p><img src="https://i.imgur.com/pZunUqZ.png" alt=""/></p>
+
+<h3 id="toc_3">2.2 使用Microsoft基本显示适配器</h3>
+
+<p>或者选择使用Microsoft基本显示适配器，同样在在上图位置，右击显卡驱</p>
+
+<p>动后点击<code>更新驱动程序软件</code>，选择<code>浏览计算机以查找驱动程序软件</code></p>
+
+<p><img src="https://i.imgur.com/cpbVRBR.jpg" alt=""/></p>
+
+<p>选择<code>从计算机的设备驱动程序列表选取</code></p>
+
+<p><img src="https://i.imgur.com/YIkcFUs.jpg" alt=""/></p>
+
+<p>选择<code>基本显示适配器</code></p>
+
+<p><img src="https://i.imgur.com/e4FLDDp.jpg" alt=""/></p>
+
+<p>至此，屏幕就不会闪了</p>
+
+<h4 id="toc_4">2.2.1 禁用自动安装驱动</h4>
+
+<p><em><u>但是在win8及以后的系统，过一段时间后依旧可能重新开始花屏，</u></em>其原因在于win系统的自动安装驱动，因此需要关闭这一功能，网上相关方法很多，win8的可以参考<a href="https://g.pconline.com.cn/x/305/3056721.html">这里</a>，win10也类似，可自行搜索方法。</p>
+
+<h4 id="toc_5">2.2.2 禁用windows更新</h4>
+
+<p>一段时间后发现，即便如此还是会在一段时候后变成使用intel的显卡驱动。找了一圈后在系统更新记录里发现了原因，系统自动升级同时升级了显卡驱动，因此可以选择<strong><em>禁用windows更新</em></strong>或者改成<strong><em>由用户选择安装</em></strong>以避免升级显卡。</p>
+
+<h2 id="toc_6">3 总结</h2>
+
+<p>该方法只是针对于对显卡要求不高的情况，譬如我只是用来使用Office和Visio，同配置下Mac端的显然lag很多。</p>
+
+<hr/>
+
+<p>By JZ<br/>
+<em>Less is more</em></p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15490329122882.html" 
+          title="Previous Post: Office 365部分安装及同时安装Visio的方法">&laquo; Office 365部分安装及同时安装Visio的方法</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="https://imgur.com/lO2kgp6" /></div>
+            
+                <h1>Kebab de JZ</h1>
+                <div class="site-des">JZ个人博客</div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/JianjunZU/" title="GitHub">GitHub</a>
+<a target="_blank" class="email" href="mailto:jianjunzu@outlook.com" title="Email">Email</a>
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="member-access.html">member access within misaligned address 错误</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15490329122882.html">Office 365部分安装及同时安装Visio的方法</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15490007488724.html">Mac使用bootcamp安装win系统花屏解决方法</a>
+			      </li>
+		     
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>
